@@ -1,12 +1,15 @@
-import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProductForm from "./components/ProductForm";
+import ProductList from "./components/ProductList";
 
-function App() {
+
+export default function App() {
   return (
-    <div className="App">
-      <ProductForm />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<ProductForm />} />
+        <Route path="/productList" element={<ProductList />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-export default App;

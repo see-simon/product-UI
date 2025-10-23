@@ -1,73 +1,80 @@
 import React, { useState } from "react";
 import { addProduct, getProduct, updateProduct, deleteProduct } from "../services/productService";
 import '../ProductForm.css';
+import { useNavigate } from "react-router-dom";
 
 const ProductForm = () => {
-  const [barCode, setBarCode] = useState("");
-  const [productName, setProductName] = useState("");
-  const [foundProduct, setFoundProduct] = useState(null);
+    const [barCode, setBarCode] = useState("");
+    const [productName, setProductName] = useState("");
+    const [foundProduct, setFoundProduct] = useState(null);
 
-  const handleAdd = async () => {
-    await addProduct({ barCode, productName });
-    alert("Product added!");
-  };
+    const navigate = useNavigate();
 
-  const handleSearch = async () => {
-    const res = await getProduct(barCode);
-    if (res.data) {
-      setFoundProduct(res.data);
-      setProductName(res.data.productName);
-    } else {
-      alert("Product not found!");
-    }
-  };
+    const handleAdd = async () => {
+        await addProduct({ barCode, productName });
+        alert("Product added!");
+    };
 
-  const handleUpdate = async () => {
-    await updateProduct(barCode, { barCode, productName });
-    alert("Product updated!");
-  };
+    const handleSearch = async () => {
+        const res = await getProduct(barCode);
+        if (res.data) {
+            setFoundProduct(res.data);
+            setProductName(res.data.productName);
+        } else {
+            alert("Product not found!");
+        }
+    };
 
-  const handleDelete = async () => {
-    await deleteProduct(barCode);
-    alert("Product deleted!");
-  };
+    const handleUpdate = async () => {
+        await updateProduct(barCode, { barCode, productName });
+        alert("Product updated!");
+    };
 
-  return (
-    <div className="container">
-      <h2>Product Management</h2>
+    const handleDelete = async () => {
+        await deleteProduct(barCode);
+        alert("Product deleted!");
+    };
 
-      <label>Bar Code</label>
-      <input
-        type="text"
-        value={barCode}
-        onChange={(e) => setBarCode(e.target.value)}
-        placeholder="Enter barcode"
-      />
+    const handleView = () => {
+        navigate("/products");
+    };
+    return (
+        <div className="container">
+            <h2>Product Management</h2>
 
-      <label>Product Name</label>
-      <input
-        type="text"
-        value={productName}
-        onChange={(e) => setProductName(e.target.value)}
-        placeholder="Enter product name"
-      />
+            <label>Bar Code</label>
+            <input
+                type="text"
+                value={barCode}
+                onChange={(e) => setBarCode(e.target.value)}
+                placeholder="Enter barcode"
+            />
 
-      <div>
-        <button className="add-btn" onClick={handleAdd}>Add</button>
-        <button className="search-btn" onClick={handleSearch}>Search</button>
-        <button className="update-btn" onClick={handleUpdate}>Update</button>
-        <button className="delete-btn" onClick={handleDelete}>Delete</button>
-      </div>
+            <label>Product Name</label>
+            <input
+                type="text"
+                value={productName}
+                onChange={(e) => setProductName(e.target.value)}
+                placeholder="Enter product name"
+            />
 
-      {foundProduct && (
-        <div className="found-product">
-          <h3>Found Product:</h3>
-          <p><strong>Barcode:</strong> {foundProduct.barCode}</p>
-          <p><strong>Name:</strong> {foundProduct.productName}</p>
+            <div>
+                <button className="add-btn" onClick={handleAdd}>Add</button>
+                <button className="search-btn" onClick={handleSearch}>Search</button>
+                <button className="update-btn" onClick={handleUpdate}>Update</button>
+                <button className="delete-btn" onClick={handleDelete}>Delete</button>
+                <button onClick={handleView}>View Products</button>
+            </div>
+
+            {foundProduct && (
+                <div className="found-product">
+                    <h3>Found Product:</h3>
+                    <p><strong>Barcode:</strong> {foundProduct.barCode}</p>
+                    <p><strong>Name:</strong> {foundProduct.productName}</p>
+                </div>
+            )}
         </div>
-      )}
-    </div>
-  );
+    );
 };
 
 export default ProductForm;
