@@ -6,7 +6,7 @@ const ProductList = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        // Fetch product list from backend (not implemented in this snippet)
+
         const fetchProducts = async () => {
             const res = await getAllProducts();
             setProducts(res.data);
