@@ -36,7 +36,7 @@ const ProductForm = () => {
     };
 
     const handleView = () => {
-        navigate("/products");
+        navigate("/productList");
     };
     return (
         <div className="container">

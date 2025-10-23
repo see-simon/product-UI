@@ -1,41 +1,47 @@
-import react, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getAllProducts } from "../services/productService";
+import "../ProductList.css"; 
 
 const ProductList = () => {
-    
-    const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
 
-    useEffect(() => {
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await getAllProducts();
+        setProducts(res.data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+    fetchProducts();
+  }, []);
 
-        const fetchProducts = async () => {
-            const res = await getAllProducts();
-            setProducts(res.data);
-        }
-    }, []);
+  return (
+    <div className="product-list-container">
+      <h2 className="product-list-title">📦 Product List</h2>
+      {products.length === 0 ? (
+        <p className="no-products">No products found.</p>
+      ) : (
+        <table className="product-table">
+          <thead>
+            <tr>
+              <th>Bar Code</th>
+              <th>Product Name</th>
+            </tr>
+          </thead>
+          <tbody>
+            {products.map((product) => (
+              <tr key={product.barCode}>
+                <td>{product.barCode}</td>
+                <td>{product.productName}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+    </div>
+  );
+};
 
-    return (
-        <div>
-            <h2>Product List</h2>
-            <ul>
-                {products.map((product) => (
-                    <li key={product.barCode}>
-
-                        <table>
-                            <tr>
-                                <th>Bar Code</th>
-                                <th>Product Name</th>
-                            </tr>
-                            <tr>
-                                <td>{product.barCode}</td>
-                                <td>{product.productName}</td>
-                            </tr>
-                        </table>
-                    </li>
-                ))}
-            </ul>
-        </div>
-    );
-
-
-}
 export default ProductList;
