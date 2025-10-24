@@ -19,7 +19,7 @@ const ProductList = () => {
 
   return (
     <div className="product-list-container">
-      <h2 className="product-list-title">📦 Product Listsssssssssss</h2>
+      <h2 className="product-list-title">📦 Product List</h2>
       {products.length === 0 ? (
         <p className="no-products">No products found.</p>
       ) : (
