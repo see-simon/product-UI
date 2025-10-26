@@ -53,6 +53,7 @@ button:hover {
 .search-btn { background-color: #2196F3; color: white; }
 .update-btn { background-color: #FFC107; color: white; }
 .delete-btn { background-color: #F44336; color: white; }
+.view-btn { background-color: #9C27B0; color: white; }
 
 .found-product {
   margin-top: 25px;
