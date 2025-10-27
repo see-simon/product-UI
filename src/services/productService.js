@@ -1,8 +1,8 @@
 import axios from "axios";
 
 
-// const API_URL = "https://store-payment.onrender.com/api"; //==== hosted on render.com works
-       const API_URL ="http://springboot-store-payment-app.eu-north-1.elasticbeanstalk.com/api"; /// hosted on AWS Elastic Beanstalk
+const API_URL = "https://store-payment.onrender.com/api"; //==== hosted on render.com
+    //    const API_URL ="http://springboot-store-payment-app.eu-north-1.elasticbeanstalk.com/api"; /// hosted on AWS Elastic Beanstalk
 // const API_URL = "http://localhost:8080/api"; //==== local development
 
         //  const API_URL ="http://springboot-jpa-app-env.eba-xddamqpi.eu-north-1.elasticbeanstalk.com/api"; /// hosted on AWS Elastic Beanstalk
