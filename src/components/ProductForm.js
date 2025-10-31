@@ -40,7 +40,7 @@ const ProductForm = () => {
         fetchProducts();
     }, []);
 
-    // i am observing count changes here
+
     useEffect(() => {
     }, [count]);
 
