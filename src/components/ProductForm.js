@@ -12,6 +12,7 @@ const ProductForm = () => {
     const [products, setProducts] = useState([]);
     const [count, setCount] = useState(0);
     const navigate = useNavigate();
+    
 
     const handleAdd = async () => {
         await addProduct({ barCode, productName });
